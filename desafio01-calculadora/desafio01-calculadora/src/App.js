@@ -56,6 +56,19 @@ const App = () => {
     }
   }
 
+  const handleMultiply = () => {
+    if (firstNumber === "0"){
+      setFirtsNumber(String(currentNumber));
+      setCurrentNumber("0")
+      setOperation("x")
+    } else {
+      const division = Number(firstNumber) * Number(currentNumber)
+      setCurrentNumber(String(division))
+      setFirtsNumber("0")
+      setOperation("")
+    }
+  }
+
   const handleEquals = () => {
     if (!firstNumber !== "0" && operation !== ""  && currentNumber !== "0"){
       switch (operation) {
@@ -68,6 +81,9 @@ const App = () => {
         case "-":
             handleDecress();
             break;
+        case "x":
+            handleMultiply();
+            break
           default:
              break;
       }
@@ -80,7 +96,7 @@ const App = () => {
       <Content>
       <Input value={currentNumber}/>
       <Row>
-        <Button label="x" onClick= {() => handleAddNumber("x")}/>
+        <Button label="x" onClick= {handleMultiply}/>
         <Button label="/" onClick= {() => handleDivision("/")}/>
         <Button label="C" onClick= {handleOnClear}/>
         <Button label="X" onClick= {() => handleAddNumber("X")}/>
